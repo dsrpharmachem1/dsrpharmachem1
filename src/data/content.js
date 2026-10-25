@@ -87,7 +87,7 @@ const PRODUCT_CATEGORIES = [
     tag: "R&D Grade",
     blurb:
       "Premium R&D-grade fine chemicals and building blocks for the global scientific community.",
-    image: IMAGES.synthesis,
+    image: "/assets/fine-chemicals.webp",
     span: "lg:col-span-2 lg:row-span-2",
     testid: "product-tile-fine-chemicals",
   },
@@ -96,7 +96,7 @@ const PRODUCT_CATEGORIES = [
     tag: "Pharma",
     blurb:
       "Advanced, novel organic intermediates for active pharmaceutical ingredient programmes.",
-    image: IMAGES.hero,
+    image: "/assets/api-intermediates.webp",
     span: "lg:col-span-2",
     testid: "product-tile-api-intermediates",
   },
@@ -104,7 +104,7 @@ const PRODUCT_CATEGORIES = [
     name: "Bio Medical Products",
     tag: "Life Science",
     blurb: "High-purity compounds supporting biomedical research.",
-    image: IMAGES.cleanroom,
+    image: "/assets/biomedical-research.webp",
     span: "",
     testid: "product-tile-bio-medical",
   },
@@ -112,7 +112,7 @@ const PRODUCT_CATEGORIES = [
     name: "Natural Products",
     tag: "Isolation + Synthesis",
     blurb: "Harmine, Piperlongumine, Picrotoxin, Coumestrol and more.",
-    image: IMAGES.botanical,
+    image: "/assets/natural-products.webp",
     span: "",
     testid: "product-tile-natural-products",
   },
@@ -121,7 +121,7 @@ const PRODUCT_CATEGORIES = [
     tag: "Specialty",
     blurb:
       "Functional specialty ingredients for advanced cosmetic formulations.",
-    image: IMAGES.glassware,
+    image: "/assets/cosmetic-formulation.webp",
     span: "lg:col-span-2",
     testid: "product-tile-cosmetic-chemicals",
   },
@@ -130,7 +130,7 @@ const PRODUCT_CATEGORIES = [
     tag: "Botanical",
     blurb:
       "Standardised herbal extracts and phytochemicals, gram to multi-kilogram scale.",
-    image: IMAGES.herbal,
+    image: "/assets/herbal-extracts.webp",
     span: "lg:col-span-2",
     testid: "product-tile-herbal-products",
   },
@@ -146,7 +146,8 @@ const SERVICES = [
       "mg to multi-kg scale",
       "COA with HPLC & NMR data",
     ],
-    image: IMAGES.synthesis,
+    image: "/assets/api-intermediates.webp",
+    imageAlt: "Gloved chemist operating laboratory synthesis equipment",
     testid: "service-custom-synthesis",
   },
   {
@@ -159,7 +160,8 @@ const SERVICES = [
       "Cost-effective technologies",
       "Pilot plant production",
     ],
-    image: IMAGES.plant,
+    image: "/assets/process-scale-up.webp",
+    imageAlt: "Industrial stainless steel processing vessels and pipework",
     testid: "service-process-rd",
   },
   {
@@ -168,7 +170,8 @@ const SERVICES = [
     icon: Dna,
     desc: "Design and synthesis of compounds of research and pharmaceutical significance for drug-discovery programmes.",
     points: ["Building-block libraries", "SAR support", "Novel heterocycles"],
-    image: IMAGES.glassware,
+    image: "/assets/medicinal-chemistry.webp",
+    imageAlt: "Chemist using a pipette to prepare a laboratory compound",
     testid: "service-medicinal-chemistry",
   },
   {
@@ -177,7 +180,8 @@ const SERVICES = [
     icon: Microscope,
     desc: "Dedicated research programmes executed by our team of post-graduates and Ph.D. chemists under strict confidentiality.",
     points: ["FTE engagements", "Project-based models", "Strict IP protection"],
-    image: IMAGES.cleanroom,
+    image: "/assets/contract-research.webp",
+    imageAlt: "Two scientists reviewing research together in a laboratory",
     testid: "service-contract-rd",
   },
   {
@@ -186,7 +190,8 @@ const SERVICES = [
     icon: Handshake,
     desc: "World-class chemistry support at every stage of development for catalogue and pharmaceutical companies worldwide.",
     points: ["Catalogue partnerships", "Rapid turnaround", "Global logistics"],
-    image: IMAGES.facility,
+    image: "/assets/cro-collaboration.webp",
+    imageAlt: "Laboratory professionals discussing project documentation",
     testid: "service-cro-services",
   },
 ];
@@ -351,15 +356,13 @@ const WORKFLOW = [
 ];
 const CONTACT = {
   corporate:
-    "The Office Capital, 15th Floor, Dallas Centre, Raidurg Panmaktha, Hitech City, Hyderabad, Telangana, India – 500 032",
+    "@ Office Capital, 15th Floor, Dallas Centre, Raidurg Panmaktha, Hitech City, Hyderabad, Telangana, India – 500 032",
   exportOffice:
     "Plot No. 188, Sy. No. 281 & 282, Jyothi Welfare, Near BPCL, Rampally, Keesara Mandal, Medchal-Malkajgiri (Dist), Hyderabad, Telangana, India – 501 302",
-  phones: ["+91 99899 77665", "+91 91446 86868"],
+  phones: ["+91 99899 77665"],
   emails: [
     "info@dsrpharmachem.com",
-    "bd@dsrpharmachem.com",
-    "sales@dsrpharmachem.com",
-    "purchase@dsrpharmachem.com",
+    
   ],
   website: "www.dsrpharmachem.com",
 };

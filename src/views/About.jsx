@@ -4,8 +4,8 @@ import React from "react";
 import { IMAGES } from "@/data/content";
 import { ABOUT_BLOCKS } from "@/data/content";
 import { FadeUp } from "@/components/Reveal";
-import { VISION } from "@/data/content";
-import { MISSION } from "@/data/content";
+import { VisionMission } from "@/components/VisionMission";
+
 import { SectionHeading } from "@/components/SectionHeading";
 import { WHY_POINTS } from "@/data/content";
 import { VALUES } from "@/data/content";
@@ -20,8 +20,8 @@ const BLOCK_IMAGES = [
   IMAGES.synthesis,
   IMAGES.glassware,
   IMAGES.plant,
-  IMAGES.facility,
-  IMAGES.cleanroom,
+  "/assets/global-reach-map.svg",
+  "/assets/biomedical-research.webp",
 ];
 const Story = () => (
   <section
@@ -42,9 +42,9 @@ const Story = () => (
               />
               <img
                 src={BLOCK_IMAGES[i]}
-                alt={b.title}
+                alt={i === 3 ? "World map showing export connections from Hyderabad, India to the USA, United Kingdom and Europe" : i === 4 ? "Laboratory scientist examining samples with a microscope" : b.title}
                 loading="lazy"
-                className="relative h-[340px] w-full rounded-3xl object-cover shadow-xl"
+                className={i === 3 ? "relative h-auto w-full rounded-3xl shadow-xl" : "relative h-[340px] w-full rounded-3xl object-cover shadow-xl"}
               />
               <span className="absolute -bottom-5 right-6 rounded-2xl bg-ink px-5 py-3 font-mono text-sm font-semibold tracking-[0.2em] text-sky shadow-lg">
                 {b.num}
@@ -75,57 +75,12 @@ const Story = () => (
     </div>
   </section>
 );
-const VisionMission = () => (
-  <section
-    data-testid="about-vision-section"
-    className="relative overflow-hidden bg-deep py-24"
-  >
-    <div className="absolute inset-0 bg-grid opacity-40" aria-hidden="true" />
-    <div className="relative mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-2">
-      {[
-        {
-          label: "Our Vision",
-          text: VISION,
-          testid: "about-vision-card",
-        },
-        {
-          label: "Our Mission",
-          text: MISSION,
-          testid: "about-mission-card",
-        },
-      ].map((card, i) => (
-        <FadeUp delay={i * 0.12} key={card.label}>
-          <div
-            data-testid={card.testid}
-            className="h-full rounded-3xl border border-white/10 bg-ink/60 p-10 backdrop-blur-sm"
-          >
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-sky">
-              {card.label}
-            </p>
-            <p className="mt-6 font-display text-xl font-semibold leading-relaxed text-white md:text-2xl">
-              {"“"}
-              <span
-                data-ve-dynamic="true"
-                style={{
-                  display: "contents",
-                }}
-              >
-                {card.text}
-              </span>
-              {"”"}
-            </p>
-          </div>
-        </FadeUp>
-      ))}
-    </div>
-  </section>
-);
 const WhyUs = () => (
   <section data-testid="about-why-section" className="bg-ink py-24">
     <div className="mx-auto max-w-7xl px-6">
       <SectionHeading
-        eyebrow="Why DSR Pharmachem"
-        title="Six reasons partners stay with us"
+        title="Six reasons why DSR PHARMACHEM?"
+        titleClassName="max-w-none text-3xl sm:text-4xl lg:whitespace-nowrap lg:text-[clamp(32px,3.4vw,48px)]"
         testid="about-why-heading"
       />
       <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -214,7 +169,9 @@ function About() {
     <React.Fragment>
       <PageHero
         testid="about-hero"
-        eyebrow="About Us · Est. 2023 · Hyderabad"
+        compact
+        inlineTitle
+        descriptionClassName="max-w-5xl"
         titleLines={["Chemistry, practiced", "as a craft."]}
         description="DSR PHARMACHEM (DSRPC Private Limited) — a leading manufacturer and supplier of fine chemicals, API intermediates, CRO services, natural, biomedical, herbal and cosmetic products."
       />

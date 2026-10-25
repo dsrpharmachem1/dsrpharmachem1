@@ -12,45 +12,48 @@ import { Users } from "lucide-react";
 import { FolderKanban } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 const ServiceBlocks = () => (
-  <section data-testid="services-detail-section" className="bg-ink py-24">
-    <div className="mx-auto max-w-7xl space-y-20 px-6">
+  <section data-testid="services-detail-section" className="service-details-light bg-white py-16 text-slate-900 lg:py-20">
+    <div className="mx-auto max-w-7xl space-y-14 lg:space-y-20 px-6">
       {SERVICES.map((s, i) => (
         <FadeUp key={s.num}>
           <div
             data-testid={s.testid}
-            className={`grid items-center gap-12 lg:grid-cols-2 ${i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}
+            id={s.testid}
+            className={`grid scroll-mt-28 items-center gap-8 lg:gap-12 lg:grid-cols-2 ${i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}
           >
-            <div className="relative overflow-hidden rounded-3xl border border-white/10">
+            <div className="relative aspect-[8/5] overflow-hidden rounded-2xl border border-slate-200 shadow-lg shadow-slate-900/5">
               <img
                 src={s.image}
-                alt={s.title}
+                alt={s.imageAlt}
+                width="1200"
+                height="750"
                 loading="lazy"
-                className="h-[320px] w-full object-cover transition-transform duration-700 hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-500 motion-safe:hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
-              <span className="absolute left-6 top-6 rounded-full border border-sky/40 bg-ink/70 px-4 py-1.5 font-mono text-xs tracking-[0.25em] text-sky backdrop-blur-sm">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/25 via-transparent to-transparent" />
+              <span className="absolute left-6 top-6 rounded-md border border-white bg-white px-3 py-2 font-mono text-xs font-bold tracking-widest text-[#2d388a] shadow-sm">
                 {s.num}
               </span>
             </div>
             <div>
               <div className="flex items-center gap-4">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-panel text-sky">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#2d388a]">
                   <s.icon className="h-5 w-5" />
                 </span>
-                <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                <h2 className="font-display text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
                   {s.title}
                 </h2>
               </div>
-              <p className="mt-6 text-base leading-relaxed text-slate-400 md:text-lg">
+              <p className="mt-6 text-base leading-relaxed text-slate-600 md:text-lg">
                 {s.desc}
               </p>
               <ul className="mt-7 space-y-3">
                 {s.points.map((p) => (
                   <li
-                    className="flex items-center gap-3 text-sm text-slate-300"
+                    className="flex items-center gap-3 text-sm text-slate-700"
                     key={p}
                   >
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brick/20 text-brickh">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-50 text-[#2d388a]">
                       <Check className="h-3.5 w-3.5" />
                     </span>
                     {p}
@@ -60,7 +63,7 @@ const ServiceBlocks = () => (
               <Link
                 to="/contact"
                 data-testid={`${s.testid}-enquire`}
-                className="group mt-8 inline-flex items-center gap-2 font-display text-sm font-bold text-sky transition-colors duration-300 hover:text-white"
+                className="group mt-8 inline-flex items-center gap-2 font-display text-sm font-bold text-brick transition-colors duration-300 hover:text-brickh hover:underline underline-offset-4"
               >
                 {"Enquire about this service"}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -116,6 +119,7 @@ const Engagement = () => (
       <SectionHeading
         eyebrow="Engagement Models"
         title="Structured around your programme"
+        titleClassName="max-w-none text-3xl sm:text-4xl lg:whitespace-nowrap lg:text-5xl"
         testid="engagement-heading"
       />
       <div className="mt-14 grid gap-5 md:grid-cols-2">
@@ -167,7 +171,9 @@ function Services() {
     <React.Fragment>
       <PageHero
         testid="services-hero"
-        eyebrow="Services · CRO · Custom Synthesis"
+        compact
+        inlineTitle
+        descriptionClassName="max-w-none xl:whitespace-nowrap xl:text-sm"
         titleLines={["Your molecule,", "our methodology."]}
         description="World-class chemistry support at every stage of the development process — from first feasibility study to validated pilot-plant production."
       />

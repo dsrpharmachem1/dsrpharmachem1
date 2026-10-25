@@ -13,16 +13,16 @@ import { Globe } from "lucide-react";
 const Footer = () => (
   <footer
     data-testid="site-footer"
-    className="border-t border-white/10 bg-[#080E1F]"
+    className="site-footer"
   >
-    <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
+    <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-2 lg:grid-cols-[1.1fr_0.65fr_0.9fr_1.2fr]">
       <div>
         <img
-          src="/logo.png"
+          src="/DSRPC2-footer.svg"
           alt="DSR PHARMACHEM logo"
-          className="h-12 w-auto rounded-lg bg-white/95 p-1"
+          width="500" height="183" className="h-auto w-64 max-w-full"
         />
-        <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">
+        <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-300">
           {
             "Architects of precision molecular synthesis. R&D-grade fine chemicals, building blocks and API intermediates from Hyderabad, India."
           }
@@ -30,7 +30,7 @@ const Footer = () => (
         <div className="mt-5 flex flex-wrap gap-2">
           {CERTS.map((c) => (
             <span
-              className="rounded-full border border-white/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-slate-400"
+              className="rounded-md border border-white/15 bg-white/5 px-2.5 py-1.5 text-[10px] font-semibold tracking-wide text-slate-300"
               key={c.name}
             >
               {c.name}
@@ -39,7 +39,7 @@ const Footer = () => (
         </div>
       </div>
       <div>
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-sky">
+        <p className="footer-column-heading">
           {"Explore"}
         </p>
         <ul className="mt-5 space-y-3">
@@ -48,7 +48,7 @@ const Footer = () => (
               <Link
                 to={link.path}
                 data-testid={`footer-link-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
-                className="text-sm text-slate-400 transition-colors duration-300 hover:text-white"
+                className="text-sm text-slate-300 transition-colors duration-300 hover:text-sky-300"
               >
                 {link.label}
               </Link>
@@ -57,7 +57,7 @@ const Footer = () => (
         </ul>
       </div>
       <div>
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-sky">
+        <p className="footer-column-heading">
           {"Products"}
         </p>
         <ul className="mt-5 space-y-3">
@@ -66,7 +66,7 @@ const Footer = () => (
               <Link
                 to="/products"
                 data-testid={`footer-product-${c.name.toLowerCase().replace(/\s+/g, "-")}`}
-                className="text-sm text-slate-400 transition-colors duration-300 hover:text-white"
+                className="text-sm text-slate-300 transition-colors duration-300 hover:text-sky-300"
               >
                 {c.name}
               </Link>
@@ -75,10 +75,10 @@ const Footer = () => (
         </ul>
       </div>
       <div>
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-sky">
+        <p className="footer-column-heading">
           {"Contact"}
         </p>
-        <ul className="mt-5 space-y-4 text-sm text-slate-400">
+        <ul className="mt-5 space-y-4 text-sm text-slate-300">
           <li className="flex gap-3">
             <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brickh" />
             <span>{CONTACT.corporate}</span>
@@ -92,7 +92,7 @@ const Footer = () => (
             <a
               href={`mailto:${CONTACT.emails[0]}`}
               data-testid="footer-email-link"
-              className="transition-colors duration-300 hover:text-white"
+              className="transition-colors duration-300 hover:text-sky-300"
             >
               {CONTACT.emails[0]}
             </a>
@@ -104,8 +104,8 @@ const Footer = () => (
         </ul>
       </div>
     </div>
-    <div className="border-t border-white/10">
-      <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6 font-mono text-[11px] uppercase tracking-[0.2em] text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+    <div className="relative border-t border-white/10 bg-black/15">
+      <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-6 text-[11px] tracking-wide text-slate-300 sm:flex-row sm:items-center sm:justify-between">
         <span>{"© 2026 DSR PHARMACHEM (DSRPC PRIVATE LIMITED)"}</span>
         <span>{"Hyderabad · Telangana · India"}</span>
       </div>

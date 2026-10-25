@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { useRef } from "react";
-import { useScroll } from "framer-motion";
-import { useTransform } from "framer-motion";
-import { MoleculeCanvas } from "@/components/MoleculeCanvas";
-import { motion } from "framer-motion";
+
+
+
+
+
 import { FadeUp } from "@/components/Reveal";
-import { MaskedLines } from "@/components/Reveal";
+
 import { Link } from "@/components/navigation";
 import { ArrowRight } from "lucide-react";
 import { STATS } from "@/data/content";
@@ -17,133 +17,58 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { ArrowUpRight } from "lucide-react";
 import { PRODUCT_CATEGORIES } from "@/data/content";
 import { SERVICES } from "@/data/content";
-import { VISION } from "@/data/content";
-import { MISSION } from "@/data/content";
+import { VisionMission } from "@/components/VisionMission";
+
 import { WHY_POINTS } from "@/data/content";
 import { CERTS } from "@/data/content";
 import { EXPORT_MARKETS } from "@/data/content";
 import { Check } from "lucide-react";
 import { Marquee } from "@/components/Marquee";
-const Hero = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const imgY = useTransform(scrollYProgress, [0, 1], [0, 110]);
-  const fade = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
-  return (
-    <section
-      ref={ref}
-      data-testid="hero-section"
-      className="relative overflow-hidden bg-ink"
-    >
-      <div className="absolute inset-0 bg-grid opacity-60" aria-hidden="true" />
-      <MoleculeCanvas className="absolute inset-0 h-full w-full" />
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(56,189,248,0.14),transparent_55%)]"
-        aria-hidden="true"
-      />
-      <motion.div
-        style={{
-          opacity: fade,
-        }}
-        className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 pb-24 pt-36 lg:grid-cols-[1.05fr_0.95fr] lg:pb-32 lg:pt-48"
-      >
-        <div>
-          <FadeUp>
-            <p
-              data-testid="hero-eyebrow"
-              className="font-mono text-xs uppercase tracking-[0.35em] text-sky"
-            >
-              {"Fine Chemicals · API Intermediates · Est. 2023"}
-            </p>
-          </FadeUp>
-          <h1 className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            <MaskedLines
-              lines={["Building blocks of", "tomorrow's medicines."]}
-              accentIndex={1}
-              delay={0.15}
-            />
-          </h1>
-          <FadeUp delay={0.5}>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-slate-400 md:text-lg">
-              {
-                "DSR PHARMACHEM manufactures premium R&D-grade fine chemicals, building blocks and advanced organic intermediates — delivered promptly, reliably and at the best possible prices from Hyderabad, India."
-              }
-            </p>
-          </FadeUp>
-          <FadeUp
-            delay={0.62}
-            className="mt-9 flex flex-wrap items-center gap-4"
-          >
-            <Link
-              to="/products"
-              data-testid="hero-explore-products-btn"
-              className="group inline-flex items-center gap-2 rounded-full bg-brick px-7 py-3.5 font-display text-sm font-bold text-white transition-colors duration-300 hover:bg-brickh"
-            >
-              {"Explore Products"}
-              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-            <Link
-              to="/contact"
-              data-testid="hero-contact-btn"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-7 py-3.5 font-display text-sm font-bold text-white transition-colors duration-300 hover:border-sky hover:text-sky"
-            >
-              {"Talk to Our Chemists"}
-            </Link>
-          </FadeUp>
-          <FadeUp
-            delay={0.75}
-            className="mt-14 grid grid-cols-2 gap-6 border-t border-white/10 pt-8 sm:grid-cols-4"
-          >
-            {STATS.map((s) => (
-              <div
-                data-testid={`stat-${s.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                key={s.label}
-              >
-                <p className="font-display text-2xl font-extrabold text-white">
-                  {s.value}
-                </p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">
-                  {s.label}
-                </p>
-              </div>
-            ))}
-          </FadeUp>
+const Hero = () => (
+  <section data-testid="hero-section" className="premium-hero">
+    <div className="premium-hero__scene" aria-hidden="true">
+      <img src="/assets/molecular-capsule-hero.webp" alt="" width="2560" height="1911" fetchPriority="high" decoding="async" className="premium-hero__image" />
+    </div>
+    <div className="premium-hero__shade" aria-hidden="true" />
+    <div className="premium-hero__inner">
+      <div className="premium-hero__copy">
+        <h1 className="premium-hero__title">
+          Building blocks of <span>tomorrow's medicines.</span>
+        </h1>
+        <p className="premium-hero__description">
+          DSR PHARMACHEM manufactures premium R&amp;D-grade fine chemicals,
+          building blocks and advanced organic intermediates — delivered promptly,
+          reliably and at the best possible prices from Hyderabad, India.
+        </p>
+        <div className="premium-hero__actions">
+          <Link to="/products" data-testid="hero-explore-products-btn" className="premium-hero__primary">
+            Explore Products <ArrowRight className="h-4 w-4" />
+          </Link>
+          <Link to="/contact" data-testid="hero-contact-btn" className="premium-hero__secondary">
+            Talk to Our Chemists <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </div>
-        <motion.div
-          style={{
-            y: imgY,
-          }}
-          className="relative hidden lg:block"
-        >
-          <FadeUp delay={0.35}>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl shadow-black/50">
-              <img
-                src={IMAGES.hero}
-                alt="DSR Pharmachem research laboratory"
-                className="h-[520px] w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+      </div>
+      <div className="premium-hero__footer">
+        <div className="premium-hero__stats">
+          {STATS.map((s) => (
+            <div className="premium-hero__stat" data-testid={`stat-${s.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} key={s.label}>
+              <p className="premium-hero__value">{s.value}</p>
+              <p className="premium-hero__label">{s.label}</p>
             </div>
-            <div className="absolute -bottom-8 -left-8 flex items-center gap-3 rounded-2xl border border-white/10 bg-panel/90 px-5 py-4 backdrop-blur-xl">
-              <ShieldCheck className="h-8 w-8 text-sky" />
-              <div>
-                <p className="font-display text-sm font-bold text-white">
-                  {"ISO 9001:2015"}
-                </p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-400">
-                  {"Certified Quality Systems"}
-                </p>
-              </div>
-            </div>
-          </FadeUp>
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-};
+          ))}
+        </div>
+        <div className="premium-hero__cert">
+          <ShieldCheck className="h-8 w-8 shrink-0" strokeWidth={1.5} />
+          <div>
+            <p className="font-display text-sm font-bold text-white">ISO 9001:2015</p>
+            <p className="mt-1 text-xs text-slate-300">Certified Quality Systems</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
 const AboutPreview = () => (
   <section
     data-testid="about-preview-section"
@@ -189,12 +114,15 @@ const AboutPreview = () => (
   </section>
 );
 const Bento = () => (
-  <section data-testid="products-bento-section" className="bg-ink py-24">
-    <div className="mx-auto max-w-7xl px-6">
+  <section data-testid="products-bento-section" className="product-showcase">
+    <img src="/assets/molecular-capsule-hero.webp" alt="" loading="lazy" className="product-showcase__background" aria-hidden="true" />
+    <div className="relative mx-auto max-w-7xl px-6">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <SectionHeading
+          dark={false}
           eyebrow="Product Categories"
-          title="Six verticals. One standard: purity."
+          title={<>Six verticals. One standard: <span className="text-[#2d388a]">purity.</span></>}
+          titleClassName="max-w-none text-3xl sm:text-4xl lg:whitespace-nowrap lg:text-[clamp(36px,3.6vw,48px)]"
           description="From R&D fine chemicals to herbal products — every compound shipped with uncompromising quality control."
           testid="bento-heading"
         />
@@ -202,36 +130,43 @@ const Bento = () => (
           <Link
             to="/products"
             data-testid="bento-view-all-btn"
-            className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-display text-sm font-bold text-white transition-colors duration-300 hover:border-sky hover:text-sky"
+            className="product-showcase__all group"
           >
             {"View All Products"}
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </FadeUp>
       </div>
-      <div className="mt-14 grid auto-rows-[230px] grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="product-showcase__grid">
         {PRODUCT_CATEGORIES.map((c, i) => (
-          <FadeUp delay={i * 0.07} className={c.span} key={c.name}>
+          <FadeUp delay={i * 0.07} key={c.name}>
             <Link
               to="/products"
               data-testid={c.testid}
-              className="group relative block h-full w-full overflow-hidden rounded-2xl border border-white/10 transition-[border-color,box-shadow] duration-500 hover:border-sky/40 hover:shadow-[0_0_40px_rgba(56,189,248,0.15)]"
+              className="product-showcase__card group"
             >
-              <img
+              <div className="product-showcase__photo">
+                <img
                 src={c.image}
-                alt={c.name}
+                alt=""
+                width="960"
+                height="540"
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/10" />
-              <div className="relative flex h-full flex-col justify-end p-6">
-                <span className="mb-3 w-fit rounded-full border border-sky/40 bg-ink/60 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-sky backdrop-blur-sm">
+                <span className="product-showcase__number">0{i + 1}</span>
+              </div>
+              <div className="product-showcase__body">
+                <span className="product-showcase__tag">
                   {c.tag}
                 </span>
-                <h3 className="font-display text-xl font-bold text-white">
+                <h3 className="font-display text-xl font-bold text-slate-900">
                   {c.name}
                 </h3>
-                <p className="mt-1.5 text-sm text-slate-300">{c.blurb}</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{c.blurb}</p>
+                <span className="product-showcase__explore">
+                  Explore category <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </span>
               </div>
             </Link>
           </FadeUp>
@@ -250,35 +185,40 @@ const ServicesHome = () => (
         dark={false}
         eyebrow="Our Services"
         title="Chemistry support, end to end"
+        titleClassName="max-w-none text-3xl sm:text-4xl lg:text-5xl"
         description="From feasibility to validated scale-up — a dedicated team of post-graduates and Ph.D. chemists behind every programme."
         testid="services-heading"
       />
-      <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="service-preview-grid">
         {SERVICES.map((s, i) => (
           <FadeUp delay={i * 0.07} key={s.num}>
             <Link
-              to="/services"
+              to={`/services/#${s.testid}`}
               data-testid={`home-${s.testid}`}
-              className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-8 transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-slate-900/10"
+              className="service-preview-card group"
             >
-              <div className="flex items-center justify-between">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-sky transition-colors duration-300 group-hover:bg-brick group-hover:text-white">
-                  <s.icon className="h-5 w-5" />
-                </span>
-                <span className="font-mono text-sm text-slate-300">
+              <div className="service-preview-card__image">
+                <img src={s.image} alt="" loading="lazy" width="1200" height="750" />
+                <span className="service-preview-card__number">
                   {s.num}
                 </span>
               </div>
-              <h3 className="mt-6 font-display text-xl font-bold text-ink">
+              <div className="service-preview-card__body">
+                <span className="service-preview-card__icon"><s.icon className="h-5 w-5" aria-hidden="true" /></span>
+              <h3 className="font-display text-xl font-bold text-ink">
                 {s.title}
               </h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 {s.desc}
               </p>
-              <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.2em] text-brick">
-                {"Learn more"}
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+              <ul className="service-preview-card__points">
+                {s.points.slice(0, 2).map((point) => <li key={point}><Check className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />{point}</li>)}
+              </ul>
+              <span className="service-preview-card__link">
+                Explore service
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </span>
+              </div>
             </Link>
           </FadeUp>
         ))}
@@ -286,63 +226,25 @@ const ServicesHome = () => (
           <Link
             to="/contact"
             data-testid="services-cta-card"
-            className="group flex h-full flex-col justify-between rounded-2xl bg-ink p-8 transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-ink/30"
+            className="service-preview-enquiry group"
           >
-            <h3 className="font-display text-2xl font-extrabold text-white">
+            <div>
+            <span className="service-preview-enquiry__eyebrow">Your next breakthrough</span>
+            <h3 className="mt-8 max-w-xs font-display text-3xl font-bold leading-tight tracking-tight text-white">
               {"Have a molecule in mind?"}
             </h3>
-            <span className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-brick px-6 py-3 font-display text-sm font-bold text-white transition-colors duration-300 group-hover:bg-brickh">
+            <p className="mt-5 text-sm leading-relaxed text-slate-300">Share your molecule, CAS number or project brief. Our chemists can help you define the next step.</p>
+            </div>
+            <div>
+            <p className="mb-5 text-xs text-slate-300">Feasibility assessment &amp; quotation</p>
+            <span className="inline-flex w-full items-center justify-between gap-2 rounded-md bg-brick px-5 py-3.5 font-display text-sm font-bold text-white transition-colors duration-300 group-hover:bg-brickh">
               {"Start an Enquiry "}
               <ArrowUpRight className="h-4 w-4" />
             </span>
+            </div>
           </Link>
         </FadeUp>
       </div>
-    </div>
-  </section>
-);
-const VisionMission = () => (
-  <section
-    data-testid="vision-mission-section"
-    className="relative overflow-hidden bg-deep py-24"
-  >
-    <div className="absolute inset-0 bg-grid opacity-40" aria-hidden="true" />
-    <div className="relative mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-2">
-      {[
-        {
-          label: "Our Vision",
-          text: VISION,
-          testid: "vision-card",
-        },
-        {
-          label: "Our Mission",
-          text: MISSION,
-          testid: "mission-card",
-        },
-      ].map((card, i) => (
-        <FadeUp delay={i * 0.12} key={card.label}>
-          <div
-            data-testid={card.testid}
-            className="h-full rounded-3xl border border-white/10 bg-ink/60 p-10 backdrop-blur-sm"
-          >
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-sky">
-              {card.label}
-            </p>
-            <p className="mt-6 font-display text-xl font-semibold leading-relaxed text-white md:text-2xl">
-              {"“"}
-              <span
-                data-ve-dynamic="true"
-                style={{
-                  display: "contents",
-                }}
-              >
-                {card.text}
-              </span>
-              {"”"}
-            </p>
-          </div>
-        </FadeUp>
-      ))}
     </div>
   </section>
 );
@@ -352,6 +254,7 @@ const WhyUs = () => (
       <SectionHeading
         eyebrow="Why DSR Pharmachem"
         title="Built for partners who can't afford delays"
+        titleClassName="max-w-none text-3xl sm:text-4xl lg:whitespace-nowrap lg:text-[clamp(32px,3.4vw,48px)]"
         testid="why-us-heading"
       />
       <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -385,6 +288,7 @@ const Certifications = () => (
         dark={false}
         eyebrow="Certifications & Quality"
         title="Certified systems, documented purity"
+        titleClassName="max-w-none text-3xl sm:text-4xl lg:whitespace-nowrap lg:text-[clamp(32px,3.4vw,48px)]"
         testid="certifications-heading"
       />
       <div className="mt-14 grid gap-5 md:grid-cols-3">
@@ -470,9 +374,6 @@ const CtaBand = () => (
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(56,189,248,0.12),transparent_60%)]"
             aria-hidden="true"
           />
-          <p className="relative font-mono text-xs uppercase tracking-[0.3em] text-sky">
-            {"Custom Synthesis · Process R&D · CRO"}
-          </p>
           <h2 className="relative mx-auto mt-5 max-w-3xl font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             {"Let's synthesise your next breakthrough."}
           </h2>

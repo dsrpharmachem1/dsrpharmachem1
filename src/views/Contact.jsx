@@ -23,12 +23,12 @@ const EMPTY = {
   message: "",
 };
 const inputCls =
-  "w-full rounded-xl border border-white/15 bg-ink/60 px-4 py-3.5 text-sm text-white placeholder:text-slate-500 outline-none transition-[border-color,box-shadow] duration-300 focus:border-sky focus:shadow-[0_0_0_3px_rgba(56,189,248,0.15)]";
+  "w-full rounded-lg border border-slate-300 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-500 outline-none transition-[border-color,box-shadow] duration-200 focus:border-blue-800 focus:ring-2 focus:ring-blue-800/15";
 const Field = ({ label, htmlFor, children }) => (
   <div>
     <label
       htmlFor={htmlFor}
-      className="mb-2 block font-mono text-[11px] uppercase tracking-[0.2em] text-slate-400"
+      className="mb-1.5 block text-xs font-semibold text-slate-700"
     >
       {label}
     </label>
@@ -53,17 +53,13 @@ const EnquiryForm = () => {
     <form
       data-testid="enquiry-form"
       onSubmit={submit}
-      className="rounded-3xl border border-white/10 bg-panel p-8 lg:p-10"
+      className="contact-enquiry-panel"
     >
-      <h2 className="font-display text-2xl font-extrabold text-white">
+      <h2 className="font-display text-2xl font-bold tracking-tight text-slate-900">
         {"Send an enquiry"}
       </h2>
-      <p className="mt-2 text-sm text-slate-400">
-        {
-          "Preview only: enquiry delivery is not connected. Share your molecule, CAS number or project brief — we respond swiftly with the exact information you need."
-        }
-      </p>
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <Field label="Full Name *" htmlFor="name">
           <input
             id="name"
@@ -114,10 +110,10 @@ const EnquiryForm = () => {
               data-testid="contact-interest-select"
               value={form.interest}
               onChange={update("interest")}
-              className={`${inputCls} appearance-none`}
+              className={inputCls}
             >
               {INTEREST_OPTIONS.map((o) => (
-                <option value={o} className="bg-ink text-white" key={o}>
+                <option value={o} className="bg-white text-slate-900" key={o}>
                   {o}
                 </option>
               ))}
@@ -130,11 +126,11 @@ const EnquiryForm = () => {
               id="message"
               data-testid="contact-message-input"
               required={true}
-              rows={5}
+              rows={4}
               value={form.message}
               onChange={update("message")}
               placeholder="CAS number, target quantity, purity requirements, timeline…"
-              className={`${inputCls} resize-none`}
+              className={`${inputCls} min-h-28 resize-y`}
             />
           </Field>
         </div>
@@ -143,7 +139,7 @@ const EnquiryForm = () => {
         type="submit"
         data-testid="contact-submit-button"
         disabled={sending}
-        className="mt-8 inline-flex items-center gap-2 rounded-full bg-brick px-8 py-4 font-display text-sm font-bold text-white transition-colors duration-300 hover:bg-brickh disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-5 inline-flex items-center gap-2 rounded-lg bg-brick px-6 py-3 font-display text-sm font-bold text-white transition-colors duration-300 hover:bg-brickh disabled:cursor-not-allowed disabled:opacity-60"
       >
         {sending ? (
           <React.Fragment>
@@ -161,7 +157,7 @@ const EnquiryForm = () => {
   );
 };
 const InfoCards = () => (
-  <div className="space-y-5">
+  <div className="contact-details-grid">
     {[
       {
         icon: MapPin,
@@ -179,15 +175,15 @@ const InfoCards = () => (
       <FadeUp key={c.label}>
         <div
           data-testid={c.testid}
-          className="rounded-2xl border border-white/10 bg-panel p-7"
+          className="contact-info-panel"
         >
           <div className="flex items-center gap-3">
             <c.icon className="h-5 w-5 text-brickh" />
-            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-slate-400">
+            <p className="text-xs font-bold tracking-wide text-[#2d388a]">
               {c.label}
             </p>
           </div>
-          <p className="mt-4 text-sm leading-relaxed text-slate-300">
+          <p className="mt-3 text-sm leading-relaxed text-slate-700">
             {c.value}
           </p>
         </div>
@@ -196,20 +192,20 @@ const InfoCards = () => (
     <FadeUp>
       <div
         data-testid="contact-phones-card"
-        className="rounded-2xl border border-white/10 bg-panel p-7"
+        className="contact-info-panel"
       >
         <div className="flex items-center gap-3">
           <Phone className="h-5 w-5 text-brickh" />
-          <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-slate-400">
+          <p className="text-xs font-bold tracking-wide text-[#2d388a]">
             {"Phone"}
           </p>
         </div>
-        <div className="mt-4 space-y-1.5">
+        <div className="mt-3 space-y-1.5">
           {CONTACT.phones.map((p) => (
             <a
               href={`tel:${p.replace(/\s+/g, "")}`}
               data-testid={`contact-phone-${p.replace(/[^0-9]/g, "")}`}
-              className="block text-sm text-slate-300 transition-colors duration-300 hover:text-sky"
+              className="block text-sm text-slate-700 transition-colors duration-300 hover:text-sky"
               key={p}
             >
               {p}
@@ -221,20 +217,20 @@ const InfoCards = () => (
     <FadeUp>
       <div
         data-testid="contact-emails-card"
-        className="rounded-2xl border border-white/10 bg-panel p-7"
+        className="contact-info-panel"
       >
         <div className="flex items-center gap-3">
           <Mail className="h-5 w-5 text-brickh" />
-          <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-slate-400">
+          <p className="text-xs font-bold tracking-wide text-[#2d388a]">
             {"Email"}
           </p>
         </div>
-        <div className="mt-4 space-y-1.5">
+        <div className="mt-3 space-y-1.5">
           {CONTACT.emails.map((em) => (
             <a
               href={`mailto:${em}`}
               data-testid={`contact-email-${em.split("@")[0]}`}
-              className="block text-sm text-slate-300 transition-colors duration-300 hover:text-sky"
+              className="block text-sm text-slate-700 transition-colors duration-300 hover:text-sky"
               key={em}
             >
               {em}
@@ -244,20 +240,20 @@ const InfoCards = () => (
       </div>
     </FadeUp>
     <FadeUp>
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div
           data-testid="contact-website-card"
-          className="rounded-2xl border border-white/10 bg-panel p-7"
+          className="contact-info-panel"
         >
           <Globe className="h-5 w-5 text-brickh" />
-          <p className="mt-4 text-sm text-slate-300">{CONTACT.website}</p>
+          <p className="mt-3 text-sm text-slate-700">{CONTACT.website}</p>
         </div>
         <div
           data-testid="contact-hours-card"
-          className="rounded-2xl border border-white/10 bg-panel p-7"
+          className="contact-info-panel"
         >
           <Clock className="h-5 w-5 text-brickh" />
-          <p className="mt-4 text-sm text-slate-300">
+          <p className="mt-3 text-sm text-slate-700">
             {"Response within 24 hours"}
           </p>
         </div>
@@ -270,12 +266,14 @@ function Contact() {
     <React.Fragment>
       <PageHero
         testid="contact-hero"
-        eyebrow="Contact Us · Hyderabad, India"
+        compact
         titleLines={["Let's talk", "chemistry."]}
+        inlineTitle
+        descriptionClassName="max-w-none xl:whitespace-nowrap"
         description="Every enquiry gets a swift, precise response — tell us about your product or project requirements."
       />
-      <section data-testid="contact-section" className="bg-ink py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1.15fr_0.85fr]">
+      <section data-testid="contact-section" className="contact-section">
+        <div className="mx-auto grid max-w-7xl items-start gap-6 px-6 lg:grid-cols-[1.15fr_0.85fr]">
           <FadeUp>
             <EnquiryForm />
           </FadeUp>

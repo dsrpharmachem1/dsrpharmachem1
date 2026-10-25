@@ -8,6 +8,7 @@ const SectionHeading = ({
   description,
   dark = true,
   testid,
+  titleClassName = "max-w-2xl text-4xl sm:text-5xl",
 }) => (
   <FadeUp>
     <p
@@ -17,7 +18,7 @@ const SectionHeading = ({
     </p>
     <h2
       data-testid={testid}
-      className={`mt-4 max-w-2xl font-display text-4xl font-extrabold tracking-tight sm:text-5xl ${dark ? "text-white" : "text-ink"}`}
+      className={`mt-4 font-display font-extrabold tracking-tight ${titleClassName} ${dark ? "text-white" : "text-ink"}`}
     >
       {title}
     </h2>

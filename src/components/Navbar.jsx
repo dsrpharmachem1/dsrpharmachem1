@@ -26,14 +26,16 @@ const Navbar = () => {
   return (
     <header
       data-testid="site-header"
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-300 ${scrolled || open ? "border-white/10 bg-ink/85 backdrop-blur-xl" : "border-transparent bg-transparent"}`}
+      className={`fixed inset-x-0 top-0 z-50 border-b bg-white border-slate-200 transition-shadow duration-300 ${scrolled || open ? "shadow-md shadow-slate-900/10" : "shadow-sm"}`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
-        <Link to="/" data-testid="nav-logo" className="flex items-center gap-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
+        <Link to="/" data-testid="nav-logo" className="flex shrink-0 items-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-600">
           <img
-            src="/logo.png"
+            src="/DSRPC2.svg"
             alt="DSR PHARMACHEM logo"
-            className="h-11 w-auto rounded-lg bg-white/95 p-1 shadow-md shadow-black/30"
+            width="500"
+            height="183"
+            className="h-auto w-40 object-contain sm:w-48"
           />
         </Link>
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
@@ -42,7 +44,7 @@ const Navbar = () => {
               to={link.path}
               data-testid={link.testid}
               className={({ isActive }) =>
-                `font-display text-sm font-semibold transition-colors duration-300 ${isActive ? "text-sky" : "text-slate-300 hover:text-white"}`
+                `font-display text-sm font-semibold transition-colors duration-300 ${isActive ? "text-sky-700" : "text-slate-700 hover:text-sky-700"}`
               }
               key={link.path}
             >
@@ -62,8 +64,10 @@ const Navbar = () => {
           type="button"
           data-testid="nav-mobile-toggle"
           onClick={() => setOpen((v) => !v)}
-          className="rounded-md p-2 text-white lg:hidden"
+          className="rounded-md p-2 text-slate-800 hover:bg-slate-100 lg:hidden"
           aria-label="Toggle navigation menu"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -71,7 +75,8 @@ const Navbar = () => {
       {open && (
         <nav
           data-testid="nav-mobile-menu"
-          className="border-t border-white/10 bg-ink/95 px-6 py-6 backdrop-blur-xl lg:hidden"
+          id="mobile-navigation"
+          className="border-t border-slate-200 bg-white px-6 py-6 lg:hidden"
           aria-label="Mobile"
         >
           <div className="flex flex-col gap-5">
@@ -80,7 +85,7 @@ const Navbar = () => {
                 to={link.path}
                 data-testid={`${link.testid}-mobile`}
                 className={({ isActive }) =>
-                  `font-display text-lg font-bold ${isActive ? "text-sky" : "text-slate-200"}`
+                  `font-display text-lg font-bold ${isActive ? "text-sky-700" : "text-slate-700 hover:text-sky-700"}`
                 }
                 key={link.path}
               >
