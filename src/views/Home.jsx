@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Earth } from "lucide-react";
 
 
 
@@ -326,7 +327,7 @@ const GlobalReach = () => (
       <div>
         <SectionHeading
           eyebrow="Global Reach"
-          title="From Hyderabad to the world's labs"
+          title="From Hyderabad to the world"
           description="With production bases and R&D centres in Hyderabad, India, we are active exporters — our products have reached the United States, the United Kingdom and countries across Europe."
           testid="global-reach-heading"
         />
@@ -338,7 +339,7 @@ const GlobalReach = () => (
               data-testid={`market-${m.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
               className="flex items-center justify-between border-b border-white/10 py-5"
             >
-              <div className="flex items-center gap-5">
+              <div className="flex min-w-0 items-center gap-3 sm:gap-5">
                 <span className="font-mono text-xs text-slate-500">
                   {"0"}
                   <span
@@ -350,14 +351,15 @@ const GlobalReach = () => (
                     {i + 1}
                   </span>
                 </span>
-                <span className="font-display text-lg font-bold text-white">
+                <span className="font-display text-sm font-bold text-white sm:text-lg">
                   {m}
                 </span>
               </div>
-              <span className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-sky">
-                <span className="h-1.5 w-1.5 rounded-full bg-sky" />
-                {" Active"}
-              </span>
+                {i < 3 ? (
+                  <img src={`/assets/flag-${["us", "gb", "eu"][i]}.svg`} alt="" aria-hidden="true" width="40" height="28" className="h-7 w-10 shrink-0 rounded-sm border border-white/20 object-cover shadow-sm" />
+                ) : (
+                  <span className="flex h-7 w-10 shrink-0 items-center justify-center rounded-sm border border-sky/30 bg-sky/10 text-sky"><Earth className="h-5 w-5" aria-hidden="true" /></span>
+                )}
             </div>
           </FadeUp>
         ))}

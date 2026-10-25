@@ -356,7 +356,7 @@ const WORKFLOW = [
 ];
 const CONTACT = {
   corporate:
-    "@ Office Capital, 15th Floor, Dallas Centre, Raidurg Panmaktha, Hitech City, Hyderabad, Telangana, India – 500 032",
+    "@ The Office Capital, 15th Floor, Dallas Centre, Raidurg Panmaktha, Hitech City, Hyderabad, Telangana, India – 500 032",
   exportOffice:
     "Plot No. 188, Sy. No. 281 & 282, Jyothi Welfare, Near BPCL, Rampally, Keesara Mandal, Medchal-Malkajgiri (Dist), Hyderabad, Telangana, India – 501 302",
   phones: ["+91 99899 77665"],
