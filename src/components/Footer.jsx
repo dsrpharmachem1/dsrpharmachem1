@@ -81,11 +81,11 @@ const Footer = () => (
         <ul className="mt-5 space-y-4 text-sm text-slate-300">
           <li className="flex gap-3">
             <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brickh" />
-            <span>{CONTACT.corporate}</span>
+            <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT.corporate)}`} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-sky-300 hover:underline underline-offset-4" aria-label={`Open corporate office in Google Maps: ${CONTACT.corporate}`}>{CONTACT.corporate}</a>
           </li>
           <li className="flex gap-3">
             <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brickh" />
-            <span>{CONTACT.phones.join(" · ")}</span>
+            <span className="flex flex-col gap-1">{CONTACT.phones.map((phone) => <a key={phone} href={`tel:${phone.replace(/[^+0-9]/g, "")}`} className="transition-colors hover:text-sky-300 hover:underline underline-offset-4">{phone}</a>)}</span>
           </li>
           <li className="flex gap-3">
             <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brickh" />
@@ -99,7 +99,7 @@ const Footer = () => (
           </li>
           <li className="flex gap-3">
             <Globe className="mt-0.5 h-4 w-4 shrink-0 text-brickh" />
-            <span>{CONTACT.website}</span>
+            <a href={/^https?:\/\//i.test(CONTACT.website) ? CONTACT.website : `https://${CONTACT.website}`} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-sky-300 hover:underline underline-offset-4">{CONTACT.website}</a>
           </li>
         </ul>
       </div>
